@@ -1,0 +1,10 @@
+Makefile
+file
+info.txt
+lexer.c
+lexer.o
+libft
+main.c
+main.o
+minishell
+minishell.h

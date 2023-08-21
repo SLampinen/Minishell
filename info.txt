@@ -1,0 +1,56 @@
+if cd
+if works
+update oldpwd to pwd, 
+mv to new, 
+update pwd;
+
+
+if (check_quotes(prompt) == 1)
+{
+	printf("Found unclosed quote\n");
+	return ;
+}
+char **dupl;
+char **cmd;
+dupl = data->env;
+cmd = ft_split(prompt, ' ');
+if (cmd[1] == NULL)
+{
+
+}
+else if (ft_strncmp(cmd[0],"export",ft_strlen(cmd[0])) == 0)
+{
+	printf("Adding\n");
+	dupl = add_to_array(data->env, cmd[1]);
+	data->env = dupl;
+}
+else if (ft_strncmp(cmd[0],"unset",ft_strlen(cmd[0])) == 0)
+{
+	printf("removing\n");
+	dupl = rm_from_array(data->env, cmd[1]);
+	data->env = dupl;
+}
+if (ft_strncmp(cmd[0],"env",ft_strlen(cmd[0])) == 0)
+{
+	int i;
+	i = 0;
+	while (dupl[i])
+	{
+		printf("line %i is %s\n",i,dupl[i]);
+		i++;
+	}
+}
+void find_pwds(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (data->env[i])
+	{
+		if (ft_strncmp("PWD", data->env[i], 3) == 0)
+			data->pwd = ft_substr(data->env[i], 4, ft_strlen(data->env[i]));
+		if (ft_strncmp("OLDPWD", data->env[i], 6) == 0)
+			data->pwd = ft_substr(data->env[i], 7, ft_strlen(data->env[i]));
+		i++;
+	}
+}
